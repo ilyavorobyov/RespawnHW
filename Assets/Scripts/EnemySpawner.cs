@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3[] _points;
     private Coroutine _createEnemy;
-    private bool _is—reating = true;
+    private bool _isCreating = true;
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
         int numberOfPoint = 0;
         var waitForSeconds = new WaitForSeconds(_respawnInterval);
 
-        while (_is—reating)
+        while (_isCreating)
         {
             Instantiate(_enemy, _points[numberOfPoint], Quaternion.identity);
             numberOfPoint++;
