@@ -3,22 +3,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private EnemyMover _enemy;
     [SerializeField] private float _respawnInterval;
+    [SerializeField] private SpawnPoint[] _points;
 
-    private Vector3[] _points;
     private Coroutine _createEnemy;
     private bool _isCreating = true;
 
     private void Start()
     {
-        _points = new Vector3[transform.childCount];
-
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            _points[i] = transform.GetChild(i).position;
-        }
-
         StopCreateEnemy();
         _createEnemy = StartCoroutine(CreateEnemy());
     }
@@ -41,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
         while (_isCreating)
         {
-            Instantiate(_enemy, _points[numberOfPoint], Quaternion.identity);
+            _points[numberOfPoint].CreateEnemy();
             numberOfPoint++;
 
             if (numberOfPoint == _points.Length)
